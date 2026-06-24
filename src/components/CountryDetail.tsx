@@ -100,14 +100,14 @@ const MAGMA = {
   bg: "#0a0a0a",
 };
 
-// ─── CSV file paths (URL-encoded because of commas in names) ────────────────
+const BASE_HF_URL =
+  "https://huggingface.co/datasets/jsdann/PacificDataViz/resolve/main";
+
 const CSV_PATHS = {
-  seaLevel: "/data/SPC,DF_CLIMATE_CHANGE,1.0,filtered,2026-06-19 02-06-44.csv",
-  seaSurfaceTemp:
-    "/data/SPC,DF_CLIMATE_CHANGE,1.0,filtered,2026-06-19 02-07-30.csv",
-  ghgEmission:
-    "/data/SPC,DF_CLIMATE_CHANGE,1.0,filtered,2026-06-19 02-08-03.csv",
-  redListIndex: "/data/SPC,DF_SDG_15,3.0,filtered,2026-06-19 02-07-48.csv",
+  seaLevel: `${BASE_HF_URL}/SPC,DF_CLIMATE_CHANGE,1.0,filtered,2026-06-19%2002-06-44.csv`,
+  seaSurfaceTemp: `${BASE_HF_URL}/SPC,DF_CLIMATE_CHANGE,1.0,filtered,2026-06-19%2002-07-30.csv`,
+  ghgEmission: `${BASE_HF_URL}/SPC,DF_CLIMATE_CHANGE,1.0,filtered,2026-06-19%2002-08-03.csv`,
+  redListIndex: `${BASE_HF_URL}/SPC,DF_SDG_15,3.0,filtered,2026-06-19%2002-07-48.csv`,
 };
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -1263,8 +1263,8 @@ function NarrativeSection({
 
             <p className="narrative-paragraph narrative-aside">
               The chart to the right traces {countryName}'s biodiversity health
-              over time. The dashed line marks the critical threshold, where
-              the pace of extinction becomes dangerously difficult to reverse.
+              over time. The dashed line marks the critical threshold, where the
+              pace of extinction becomes dangerously difficult to reverse.
             </p>
           </div>
 
@@ -1457,7 +1457,7 @@ export default function CountryDetail({
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `/data/countries/${countryCode.toLowerCase()}_coastlines.json`,
+          `${BASE_HF_URL}/countries/${countryCode.toLowerCase()}_coastlines.json`,
         );
         if (!response.ok)
           throw new Error(`HTTP error! status: ${response.status}`);

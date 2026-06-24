@@ -16,7 +16,11 @@ export default function MapMicro({ countryCode }: MapMicroProps) {
     // Ambil data GeoJSON abrasi negara yang diklik
     const fetchGeoData = async () => {
       try {
-        const res = await fetch(`/data/countries/${countryCode}.json`);
+        const BASE_HF_URL =
+          "https://huggingface.co/datasets/jsdann/PacificDataViz/resolve/main";
+        const res = await fetch(
+          `${BASE_HF_URL}/countries/${countryCode.toLowerCase()}.json`,
+        );
         if (!res.ok) throw new Error("Data not found");
         const data = (await res.json()) as GeoJSON.FeatureCollection;
         setGeoData(data);

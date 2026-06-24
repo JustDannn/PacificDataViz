@@ -13,6 +13,8 @@ import SplitText from "./components/texts/SplitText";
 import MapMacro from "./components/MapMacro";
 import CountryDetail from "./components/CountryDetail";
 import CustomCursor from "./components/CustomCursor";
+import CreditScene from "./components/CreditScene";
+
 const NARRATIVE_STEPS = [
   "SINKING PARADISE",
   "The waters are rising.",
@@ -23,6 +25,7 @@ function App() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+  const [showCredits, setShowCredits] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -34,6 +37,13 @@ function App() {
     else if (latest < 0.3) setActiveStep(1);
     else if (latest < 0.45) setActiveStep(2);
     else setActiveStep(3); // Teks hilang
+
+    // Trigger credit scene pas map udah ngeblur
+    if (latest >= 1) {
+      setShowCredits(true);
+    } else {
+      setShowCredits(false);
+    }
   });
 
   // Cahaya ilang lebih cepet
@@ -174,6 +184,25 @@ function App() {
           >
             <MapMacro onSelectCountry={(code) => setSelectedCountry(code)} />
           </motion.div>
+
+          {/* =======================================
+              LAYER CREDIT SCENE (OVERLAY DI ATAS MAP)
+              ======================================= */}
+          <AnimatePresence>
+            {showCredits && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1, ease: "easeInOut" }}
+                className="absolute inset-0 z-40 flex items-center justify-center bg-neutral-950/60 pointer-events-none"
+              >
+                <div className="pointer-events-auto w-full">
+                  <CreditScene />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
 

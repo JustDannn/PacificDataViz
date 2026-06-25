@@ -39,7 +39,7 @@ function App() {
     else setActiveStep(3); // Teks hilang
 
     // Trigger credit scene pas map udah ngeblur
-    if (latest >= 1) {
+    if (latest >= 0.9) {
       setShowCredits(true);
     } else {
       setShowCredits(false);

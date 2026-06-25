@@ -1,76 +1,30 @@
-# React + TypeScript + Vite
+Project ini adalah sebuah pengalaman visual interaktif (scrollytelling) yang menyoroti dampak nyata perubahan iklim di kepulauan Pasifik. Seiring berjalannya waktu, garis pantai semakin terkikis dan permukaan air laut terus naik, mengancam keberadaan negara-negara di kawasan Pasifik.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Melalui visualisasi data yang mendalam, website ini mengajak audiens untuk melihat langsung korelasi antara Emisi Gas Rumah Kaca (GHG), Anomali Suhu Permukaan Laut (SST), Kenaikan Permukaan Air Laut, dan dampaknya terhadap keanekaragaman hayati (Red List Index).
 
-Currently, two official plugins are available:
+## Fitur Utama
+Narrative Scrollytelling: Menceritakan krisis iklim melalui animasi transisi halus berbasis scroll (dari teks naratif yang dramatis hingga zoom-in ke peta Pasifik).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Interactive Macro Map: Peta 3D kawasan Pasifik di mana pengguna dapat memilih node/negara yang menyala untuk melihat detail degradasi lingkungan mereka.
 
-## React Compiler
+Dynamic Data Visualization: Render grafik interaktif berkualitas tinggi menggunakan D3.js yang mencakup:
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Dual Axis Chart: Membandingkan tren Emisi Gas Rumah Kaca (Bar) dengan Anomali Suhu Permukaan Laut (Line).
 
-Note: This will impact Vite dev & build performances.
+Area Chart: Memvisualisasikan anomali Kenaikan Permukaan Air Laut (Sea Level) lengkap dengan tooltip interaktif.
 
-## Expanding the ESLint configuration
+Trend Chart: Menampilkan penurunan Red List Index (status ancaman kepunahan spesies) yang dilengkapi dengan indikator zona kritis.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Thematic Color Palette: Menggunakan palet warna Magma-inspired untuk memberikan kesan dramatis dan memperkuat urgensi visual dari data suhu dan krisis iklim.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Teknologi yang Digunakan
+Frontend Framework: React.js (dengan TypeScript)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Animation & Scrollytelling: Framer Motion (motion/react)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Data Visualization: D3.js
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Styling: Tailwind CSS (dengan custom font dan utility classes)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# PacificDataViz
+## Sumber Data
+Data iklim yang digunakan dalam project ini ditarik secara dinamis (berformat .csv) dari dataset penyelenggara lomba.
